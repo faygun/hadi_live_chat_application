@@ -1,0 +1,28 @@
+.channel-bar{
+    height: 500px;
+    background-color: black;
+}
+
+.message-container{
+    height: 500px;
+}
+
+.message{
+    height: 100%;
+}
+
+.text-container{
+    display: block;
+    height: 100%;
+}
+
+.from-user{
+    display: block;
+    text-align: left;
+    color: red;
+}
+
+.text{
+    display: block;
+    text-align: left;
+}
