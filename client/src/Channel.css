@@ -1,7 +1,20 @@
 .channel-bar{
     height: 500px;
     background-color: black;
+    padding: 10px;
 }
+.channel-bar > p {
+    color: wheat;
+}
+
+.active{
+    color:white!important;
+}
+
+.nav-item > a  {
+    color: grey;
+}
+
 
 .message-container{
     height: 500px;
@@ -9,11 +22,11 @@
 
 .message{
     height: 100%;
+    overflow-y: scroll;
 }
 
 .text-container{
-    display: block;
-    height: 100%;
+    position:fixed;
 }
 
 .from-user{
