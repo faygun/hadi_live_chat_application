@@ -45,10 +45,8 @@ module.exports = {
                 let user;
                 if(users){
                     user = users.find((item)=>{
-                        console.log(item.email, email, typeof(item.email), typeof(email))
                         return item.email == email;
                     });
-                    console.log(user);
                 }
                 
                 callback(user);

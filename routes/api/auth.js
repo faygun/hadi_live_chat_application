@@ -3,6 +3,7 @@ const router = express.Router();
 const config = require('config');
 const jwt = require('jsonwebtoken');
 const User = require('../../models/User');
+const bcrypt = require('bcryptjs');
 
 router.post('/',(req, res)=>{
     var {email, password} = req.body;
@@ -24,7 +25,8 @@ router.post('/',(req, res)=>{
                     user:{
                         name:user.name,
                         email:user.email,
-                        id: user.id
+                        id: user.id,
+                        date : user.time    
                     }
                 });
             })
