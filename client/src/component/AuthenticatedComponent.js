@@ -9,12 +9,18 @@ class AuthenticatedComponent extends Component{
         super(props);
 
         this.state={
-            user : undefined
+            user : undefined,
+            registerMode:false
         }
     }
 
     componentDidMount(){
         if(!isAuthenticated()){
+            this.setState({registerMode:false});
+            if(document.URL.indexOf('register') > -1){
+                this.setState({registerMode : true});
+                return;
+            }
             this.setState({
                 user: null
               });
@@ -33,7 +39,7 @@ class AuthenticatedComponent extends Component{
 
     render() {
         const { user } = this.state;
-        if (user === undefined) {
+        if (user === undefined && !this.state.registerMode) {
           return (
             <div className="text-center">
               {getSpinner(128, 128)}
