@@ -3,11 +3,11 @@ export const getJwt = ()=> {
 }
 
 export const getUser = ()=>{
-    var user = JSON.parse(localStorage.getItem('user'));
+    var user = JSON.parse(localStorage.getItem('user')).user;
     return user;
 }
 export const getName = ()=>{
-    return JSON.parse(localStorage.getItem('user')).name;
+    return JSON.parse(localStorage.getItem('user')).user.name;
 }
 export const logout = ()=>{
     localStorage.removeItem('user');
