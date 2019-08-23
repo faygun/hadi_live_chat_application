@@ -17,3 +17,15 @@ export const logout = ()=>{
 export const isAuthenticated = ()=>{
     return getJwt() && getUser();
 }
+
+export const getConfig = ()=> {
+    const config = {
+        headers:{
+            "Content-type":"application/json"
+        }
+      };
+      const jwt = getJwt();
+      config.headers['x-auth-token'] = jwt;
+
+      return config;
+}   
