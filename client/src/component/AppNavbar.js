@@ -19,7 +19,7 @@ class AppNavbar extends Component{
         logout();
         this.props.history.push('/login');
     }
-    
+
     toogle = ()=>{
         this.setState({
             isOpen : !this.state.isOpen
@@ -40,6 +40,12 @@ class AppNavbar extends Component{
             </NavItem>
           </Fragment>
           );
+        }else{
+            authLink =(  
+                <Fragment>
+                    <NavLink href="/register">Register</NavLink>
+                </Fragment>
+            )
         }
         return(
             <div>
