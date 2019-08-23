@@ -4,13 +4,16 @@ import { BrowserRouter, Route } from "react-router-dom";
 import AppNavbar from './component/AppNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './component/Login';
+import AuthenticatedComponent from './component/AuthenticatedComponent';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <AppNavbar/>
-        <Route exact path="/" component={Login} />
+        <AuthenticatedComponent>
+          <Route exact path="/login" component={Login} />          
+        </AuthenticatedComponent>
       </div>
     </BrowserRouter>
   );
