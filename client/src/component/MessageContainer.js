@@ -4,6 +4,8 @@ import TextContainer from './TextContainer';
 import Message from './Message';
 import axios from 'axios';
 import { getConfig, getUser } from '../helper/jwt';
+import { RedisHelper } from '../helper/helper';
+
 export default class MessageContainer extends Component{
     constructor(props){
         super(props);
@@ -17,8 +19,13 @@ export default class MessageContainer extends Component{
         if(this.props.active_channel !== prevProps.active_channel) // Check if it's a new user, you can also use some unique property, like the ID  (this.props.user.id !== prevProps.user.id)
         {
           this.getMessages();
+        
         }
       } 
+
+      getText(text){
+        
+      }
 
       getMessages(){
         if(!this.props.active_channel) return;
@@ -38,7 +45,7 @@ export default class MessageContainer extends Component{
         return(
             <div className="message-container">
                 <Message messages={this.state.messages}/>
-                <TextContainer channel_id={this.props.active_channel}/>
+                <TextContainer channel_id={this.props.active_channel} text={this.getText.bind(this)}/>
             </div>
         )
     }

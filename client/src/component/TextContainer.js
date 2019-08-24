@@ -18,8 +18,10 @@ export default class TextContainer extends Component{
     sendMessage(){
         if(!this.state.message || !this.props.channel_id)return;
 
+        const message = this.state.message;
+        this.props.text(message);
         const user = getUser();
-        var request = {message : this.state.message, channel_id : this.props.channel_id, name:user.name};
+        var request = {message : message, channel_id : this.props.channel_id, name:user.name};
         const body = JSON.stringify(request);
 
         axios.post('/api/channel/send', body, getConfig())

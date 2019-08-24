@@ -2,7 +2,8 @@ import React,{Component} from 'react';
 import {isAuthenticated, logout} from '../helper/jwt';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom'
-import { getConfig, getSpinner } from '../helper/helper';
+import { getSpinner } from '../helper/helper';
+import { getConfig } from '../helper/jwt';
 
 class AuthenticatedComponent extends Component{
     constructor(props){
