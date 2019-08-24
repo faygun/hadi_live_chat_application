@@ -16,8 +16,8 @@ export default class ChannelBar extends Component{
                 <Nav vertical color="dark" width="25%">
                     {
                         this.props.channels.map(({id,name}) => (  
-                            <NavItem>
-                                    <NavLink key={id} className={this.state.active_id === id ? "active" : ""} onClick={()=>{this.setState({active_id : id}); this.props.setActiveChannel(id)}} href="#">{name}</NavLink>
+                            <NavItem key={id}>
+                                    <NavLink className={this.state.active_id === id ? "active" : ""} onClick={()=>{this.setState({active_id : id}); this.props.setActiveChannel(id)}} href="#">{name}</NavLink>
                             </NavItem>  
                         ))
                     }
