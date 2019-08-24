@@ -38,7 +38,7 @@ export default class MessageContainer extends Component{
         return(
             <div className="message-container">
                 <Message messages={this.state.messages}/>
-                <TextContainer/>
+                <TextContainer channel_id={this.props.active_channel}/>
             </div>
         )
     }
