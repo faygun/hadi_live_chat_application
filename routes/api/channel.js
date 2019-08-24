@@ -9,4 +9,13 @@ router.get('/', (req, res)=>{
     })
 });
 
+router.post('/message', (req, res) =>{
+    let {channel_id, user_id} = req.body;
+    Channel.getMessages(channel_id, user_id, (messages, err)=>{
+        console.log(messages);
+        if(err)return res.status(500).json({error:err});
+        res.json(messages);
+    })
+})
+
 module.exports = router;

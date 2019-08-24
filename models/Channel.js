@@ -24,4 +24,48 @@ module.exports = {
 
         })
     },
+
+    getMessages: (channel_id, user_id, callback) =>{
+        redis.get('channels', (err,res) =>{
+            if(!err){
+                let channels = JSON.parse(res);
+                let channel = channels.find((item)=>{
+                    return item.id === channel_id;
+                });
+                
+                // channel.users.push({
+                //     id:"872b1a5b-3b89-43c1-89c3-88702def649a"
+                // })
+                // channel.messages.push({
+                //     message:'selam selam es greeetingg hiii',
+                //     time:Date.now(),
+                //     user_id : "872b1a5b-3b89-43c1-89c3-88702def649a",
+                //     user_name:"Faruk"
+                // });
+
+                // channel.messages.push({
+                //     message:'aaaaaaaaaaa aaaaaaaaaaaaaaa',
+                //     time:Date.now(),
+                //     user_id : "872b1a5b-3b89-43c1-89c3-88702def649a",
+                //     user_name:"Ahmet"
+                // });
+
+                // channel.messages.push({
+                //     message:'bbbbbbbbb bbbbbbbbbbbbbbbb',
+                //     time:Date.now(),
+                //     user_id : "872b1a5b-3b89-43c1-89c3-88702def649a",
+                //     user_name:"Nurgül"
+                // });
+
+                if(channel){
+                    console.log(channel);
+                    if(channel.users && channel.users.find((item)=> {return item.id === user_id})){
+                        callback(channel.messages.sort((a,b)=> {return a.time > b.time}));
+                    }
+                }
+            }else{
+                callback(err);
+            }
+        })
+    }
 }
