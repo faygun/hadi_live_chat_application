@@ -18,6 +18,7 @@
 
 .message-container{
     height: 500px;
+    width: 100%;
 }
 
 .message{
@@ -26,7 +27,8 @@
 }
 
 .text-container{
-    position:fixed;
+    display: block;
+    margin: 5px 0px;
 }
 
 .from-user{
