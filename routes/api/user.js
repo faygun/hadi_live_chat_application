@@ -3,10 +3,11 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
+const auth = require('../../middleware/auth');
 
 const User = require('../../models/User');
 
-router.get('/', (req, res)=>{
+router.get('/', auth, (req, res)=>{
     User.getAllUsers((users)=>{
         res.json(users);
     })

@@ -22,7 +22,7 @@ export default class MessageContainer extends Component{
 
       getMessages(){
         if(!this.props.active_channel) return;
-        axios.post('/api/channel/message', {channel_id : this.props.active_channel, user_id: getUser().id}, getConfig())
+        axios.post('/api/channel/message', {channel_id : this.props.active_channel}, getConfig())
         .then(res => {
             this.setState({messages:res.data})
         })
