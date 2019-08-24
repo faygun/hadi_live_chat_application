@@ -12,10 +12,18 @@ router.get('/', (req, res)=>{
 router.post('/message', (req, res) =>{
     let {channel_id, user_id} = req.body;
     Channel.getMessages(channel_id, user_id, (messages, err)=>{
-        console.log(messages);
         if(err)return res.status(500).json({error:err});
-        res.json(messages);
+        return res.json(messages);
     })
+})
+
+router.post('/send',(req,res)=>{
+    let {channel_id, user_id, message, name} = req.body;
+    Channel.send({channel_id, user_id, message, name},(response, err)=>{
+        if(err)return res.status(500).json({error:err});
+        return res.json("OK");
+    });
+    
 })
 
 module.exports = router;
