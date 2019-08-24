@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import { InputGroup, InputGroupAddon, Label } from 'reactstrap';
 
 export default class MessageRow extends Component{
 
@@ -9,8 +8,8 @@ export default class MessageRow extends Component{
     render(){
         return(
             <div>
-                <label className="from-user">Faruk</label>
-                <span className="text">sadasdsa ssdgdfg asdasda</span>
+                <label className="from-user">{this.props.name}</label>
+                <span className="text">{this.props.message}</span>
             </div>
         )
     }
