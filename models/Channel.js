@@ -31,6 +31,8 @@ module.exports = {
                 callback(err)
             }else{
                 let channels = JSON.parse(res);
+                let message_id = uuid();
+                let time = Date.now();
                 channels = channels.map((item) =>{
                     if(item.id === params.channel_id){
                         item = item;
@@ -41,9 +43,9 @@ module.exports = {
                         users = [...new Set(users)];
 
                         messages.push({
-                            message_id : uuid(),
+                            message_id : message_id,
                             message:params.message,
-                            time:Date.now(),
+                            time:time,
                             user_id : params.user_id,
                             user_name:params.name
                         });
@@ -55,7 +57,16 @@ module.exports = {
                     return item;
                 });
                 redis.set('channels', JSON.stringify(channels));
-                callback({response:"OK"});
+                
+                callback({
+                    message_id : message_id,
+                    channel_id : params.channel_id,
+                    message : params.message,
+                    name : params.name,
+                    user_id:params.user_id,
+                    time:time,
+                    status : "OK"
+                });   
             }
         })
     },
