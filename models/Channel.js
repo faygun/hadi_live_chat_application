@@ -13,22 +13,22 @@ module.exports = {
         return this;
     },
     
-    getChannels : (callback)=>{
+    getChannels : (callback=(channels, err))=>{
         redis.get('channels', (err,res) =>{
             if(!err){
                 let channels = JSON.parse(res);
-                callback(channels);
+                callback(channels, null);
             }else{
 
-                callback(error = err);
+                callback(null, err);
             }
 
         })
     },
-    send:(params, callback)=>{
+    send:(params, callback=(response, err))=>{
         redis.get('channels',(err, res)=>{
             if(err){
-                callback(err)
+                callback(null, err)
             }else{
                 let channels = JSON.parse(res);
                 let message_id = uuid();
@@ -66,11 +66,11 @@ module.exports = {
                     user_id:params.user_id,
                     time:time,
                     status : "OK"
-                });   
+                }, null);   
             }
         })
     },
-    getMessages: (channel_id, user_id, callback) =>{
+    getMessages: (channel_id, user_id, callback=(result, err)) =>{
         redis.get('channels', (err, res) =>{
             if(!err){
                 let result = [];
@@ -85,9 +85,9 @@ module.exports = {
                         result = channel.messages.sort((a,b)=> {return a.time > b.time});
                     }
                 }
-                callback(result);
+                callback(result, null);
             }else{
-                callback(err);
+                callback(null, err);
             }
         })
     }

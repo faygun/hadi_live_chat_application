@@ -51,6 +51,10 @@ export default class MessageContainer extends Component{
 
                 this.setState({messages:messages});
             }
+            else{
+                if(res.user_id === getUser().id)
+                    alert(res.error)
+            }
         } );
 
     }

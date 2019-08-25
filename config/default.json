@@ -1,3 +1,4 @@
 {
-    "jwtSecret":"hadi_live_secret_key"
+    "jwtSecret":"hadi_live_secret_key",
+    "maxChannelCount":3
 }
