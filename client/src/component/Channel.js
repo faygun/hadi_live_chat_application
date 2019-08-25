@@ -25,7 +25,11 @@ export default class Channel extends Component{
     componentDidMount(){
         axios.get('/api/channel', getConfig())
         .then(res => {
+            let firstChannel = res.data[0];
+            firstChannel.isFirst = true;
+            res.data[0] = firstChannel;
             this.setState({channels:res.data})
+            this.setState({active_channel:res.data[0].id})
         })
         .catch(err => {
             this.setState({error:err.error});
