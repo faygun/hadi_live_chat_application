@@ -1,10 +1,9 @@
 import React,{Component} from 'react';
 import '../Channel.css';
-import TextContainer from './TextContainer';
 import Message from './Message';
 import axios from 'axios';
 import { getConfig, getUser } from '../helper/jwt';
-import { RedisHelper } from '../helper/helper';
+import io from "socket.io-client";
 
 export default class MessageContainer extends Component{
     constructor(props){
@@ -21,10 +20,6 @@ export default class MessageContainer extends Component{
           this.getMessages();
         
         }
-      } 
-
-      getText(text){
-        
       }
 
       getMessages(){
@@ -37,15 +32,32 @@ export default class MessageContainer extends Component{
             this.setState({error:err.error});
         });
     }
+    
     componentDidMount(){
         this.getMessages();
-    }
+        const socket = io("http://localhost:5000");
+        socket.on("received", (res) => {
+            if(res && res.data){
+                let messages = this.state.messages;
+                let data = res.data;
+                if(data.channel_id !== this.props.active_channel)return;
+                messages.push({
+                    message_id : data.message_id,    
+                    message:data.message,
+                    time:data.time,
+                    user_id : data.user_id,
+                    user_name:data.name
+                });
 
+                this.setState({messages:messages});
+            }
+        } );
+
+    }
     render(){
         return(
             <div className="message-container">
-                <Message messages={this.state.messages}/>
-                <TextContainer channel_id={this.props.active_channel} text={this.getText.bind(this)}/>
+                <Message  channel_id={this.props.active_channel} messages={this.state.messages}/>
             </div>
         )
     }
