@@ -41,6 +41,7 @@ export default class MessageContainer extends Component{
                 let messages = this.state.messages;
                 let data = res.data;
                 if(data.channel_id !== this.props.active_channel)return;
+                if(data.users.indexOf(getUser().id) === -1)return;
                 messages.push({
                     message_id : data.message_id,    
                     message:data.message,

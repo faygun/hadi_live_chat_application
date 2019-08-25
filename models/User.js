@@ -63,7 +63,6 @@ module.exports = {
                 users = users.map((item)=>{
                     if(item.id === id){
                         let channels = item.channels ? item.channels : [];
-                        console.log(channels)
                         channels.push(channel_id);
                         item.channels = [...new Set(channels)];
                     }

@@ -33,6 +33,7 @@ module.exports = {
                 let channels = JSON.parse(res);
                 let message_id = uuid();
                 let time = Date.now();
+                let channelUsers = [];
                 channels = channels.map((item) =>{
                     if(item.id === params.channel_id){
                         item = item;
@@ -52,7 +53,7 @@ module.exports = {
                         
                         item.users = users;
                         item.messages = messages;
-                        
+                        channelUsers = users;
                     }
                     return item;
                 });
@@ -61,6 +62,7 @@ module.exports = {
                 callback({
                     message_id : message_id,
                     channel_id : params.channel_id,
+                    users:channelUsers,
                     message : params.message,
                     name : params.name,
                     user_id:params.user_id,
